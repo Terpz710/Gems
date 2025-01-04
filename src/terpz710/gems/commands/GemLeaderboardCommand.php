@@ -14,6 +14,8 @@ use pocketmine\player\Player;
 
 use pocketmine\utils\TextFormat;
 
+use terpz710\gems\Gems;
+
 use terpz710\gems\manager\GemManager;
 
 class GemLeaderboardCommand extends Command implements PluginOwned {
@@ -21,8 +23,9 @@ class GemLeaderboardCommand extends Command implements PluginOwned {
     private $plugin;
 
     public function __construct() {
-        parent::__construct("gemsleaderboard");
+        parent::__construct("topgems");
         $this->setDescription("Displays the top 10 players with the most gems");
+        $this->setAliases(["gemleaderboard", "glb"]);
         $this->setPermission("gems.leaderboard");
         
         $this->plugin = Gems::getInstance();
