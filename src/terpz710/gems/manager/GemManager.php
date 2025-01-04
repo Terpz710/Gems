@@ -85,4 +85,22 @@ final class GemManager {
             }
         }
     }
+
+    public function getLeaderboard() : array{
+        $allData = $this->data->getAll();
+        $leaderboard = [];
+
+        foreach ($allData as $playerData) {
+            $leaderboard[] = [
+                "name" => $playerData["name"],
+                "balance" => $playerData["balance"]
+            ];
+        }
+
+        usort($leaderboard, function ($a, $b) {
+            return $b["balance"] <=> $a["balance"]; // Sort in descending order
+        });
+
+        return array_slice($leaderboard, 0, 10);
+    }
 }
