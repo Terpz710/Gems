@@ -14,6 +14,7 @@ use terpz710\gems\commands\SetGemCommand;
 use terpz710\gems\commands\MyGemCommand;
 use terpz710\gems\commands\SeeGemCommand;
 use terpz710\gems\commands\PayGemCommand;
+use terpz710\gems\commands\GemLeaderboardCommand;
 
 final class Gems extends PluginBase {
     
@@ -39,7 +40,8 @@ final class Gems extends PluginBase {
             new SetGemCommand(),
             new MyGemCommand(),
             new SeeGemCommand(),
-            new PayGemCommand()
+            new PayGemCommand(),
+            new GemLeaderboardCommand()
         ]);
     }
 
