@@ -53,28 +53,25 @@ final class GemManager {
     public function giveGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
         $current = $this->seeGemBalance($player);
-        $tag = new GemScoreHud();
         $this->data->setNested("$uuid.balance", $current + $amount);
         $this->data->save();
-        $tag->updateScoreTag($player);
+        GemScoreHud::getInstance()->updateScoreTag($player);
     }
 
     public function removeGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
         $current = $this->seeGemBalance($player);
         $newBalance = max(0, $current - $amount);
-        $tag = new GemScoreHud();
         $this->data->setNested("$uuid.balance", $newBalance);
         $this->data->save();
-        $tag->updateScoreTag($player);
+        GemScoreHud::getInstance()->updateScoreTag($player);
     }
 
     public function setGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
-        $tag = new GemScoreHud();
         $this->data->setNested("$uuid.balance", $amount);
         $this->data->save();
-        $tag->updateScoreTag($player);
+        GemScoreHud::getInstance()->updateScoreTag($player);
     }
 
     public function updatePlayerName(Player $player) : void{
