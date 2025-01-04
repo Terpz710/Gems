@@ -16,6 +16,8 @@ use pocketmine\utils\TextFormat;
 
 use terpz710\gems\Gems;
 
+use terpz710\gems\scorehud\GemScoreHud;
+
 class AddGemCommand extends Command implements PluginOwned {
 
     private $plugin;
@@ -55,6 +57,7 @@ class AddGemCommand extends Command implements PluginOwned {
 
         $gemManager = Gems::getInstance()->getGemManager();
         $data = $gemManager->data->getAll();
+        $tag = new GemScoreHud();
         $found = false;
 
         foreach ($data as $uuid => $info) {
@@ -63,6 +66,7 @@ class AddGemCommand extends Command implements PluginOwned {
                 $gemManager->data->setNested("$uuid.balance", $newBalance);
                 $gemManager->data->save();
                 $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $targetName);
+                $tag->updateScoreTag($sender);
                 $found = true;
                 break;
             }
