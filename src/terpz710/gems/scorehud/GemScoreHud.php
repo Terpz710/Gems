@@ -15,10 +15,8 @@ use Ifera\ScoreHud\event\PlayerTagsUpdateEvent;
 
 final class GemScoreHud {
 
-    private $plugin;
-
     public function __construct() {
-        $this->plugin = Gems::getInstance();
+        //noop
     }
 
     public function updateScoreTag(Player $player) : void{
