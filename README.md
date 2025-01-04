@@ -102,7 +102,12 @@ Example method:
 
 How to verify to see if a player exist before creating a new balance.
 
-if($api->hasGemBalance($player)) {
+if(!$api->hasGemBalance($player)) {
     $api->createGemBalance($player, 100);
 }
 ```
+
+# How to install
+1. Download from Poggit or Github.
+2. Put the .phar or unzipped .zip within the plugins folder
+3. start/restart your server and enjoy!
