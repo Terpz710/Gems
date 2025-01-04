@@ -8,6 +8,8 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\entity\EntityTeleportEvent;
 
+use pocketmine\player\Player;
+
 use terpz710\gems\scorehud\GemScoreHud;
 
 class EventListener implements Listener {
