@@ -17,7 +17,7 @@ use terpz710\gems\commands\PayGemCommand;
 
 final class Gems extends PluginBase {
     
-    protected static self $instance;
+    protected static $instance;
 
     private $gemManager;
 
