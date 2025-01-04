@@ -98,7 +98,7 @@ final class GemManager {
         }
 
         usort($leaderboard, function ($a, $b) {
-            return $b["balance"] <=> $a["balance"]; // Sort in descending order
+            return $b["balance"] <=> $a["balance"];
         });
 
         return array_slice($leaderboard, 0, 10);
