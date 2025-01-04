@@ -67,6 +67,12 @@ class AddGemCommand extends Command implements PluginOwned {
                 $gemManager->data->save();
                 $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $targetName);
                 $tag->updateScoreTag($sender);
+                $receiver = $sender->getServer()->getPlayerExact($info["name"]);
+                
+                if ($receiver !== null) {
+                    $tag->updateScoreTag($receiver);
+                }
+                
                 $found = true;
                 break;
             }
