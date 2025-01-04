@@ -62,14 +62,14 @@ class AddGemCommand extends Command implements PluginOwned {
                 $newBalance = $info["balance"] + $amount;
                 $gemManager->data->setNested("$uuid.balance", $newBalance);
                 $gemManager->data->save();
-                $sender->sendMessage(TextFormat::GREEN . "Added $amount gems to $targetName");
+                $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $targetName);
                 $found = true;
                 break;
             }
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . "Player $targetName not found in the database");
+            $sender->sendMessage(TextFormat::RED . $targetName . " is not online or doesnt exist...");
         }
 
         return true;
