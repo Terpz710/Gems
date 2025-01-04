@@ -44,14 +44,14 @@ class SeeGemCommand extends Command implements PluginOwned {
         foreach ($data as $uuid => $info) {
             if (strtolower($info["name"]) === strtolower($targetName)) {
                 $balance = $info["balance"];
-                $sender->sendMessage(TextFormat::GREEN . "$targetName has $balance gems");
+                $sender->sendMessage(TextFormat::GREEN . $targetName . " has " . number_format($balance) . " gems");
                 $found = true;
                 break;
             }
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . "Player $targetName not found in the database");
+            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
         }
 
         return true;
