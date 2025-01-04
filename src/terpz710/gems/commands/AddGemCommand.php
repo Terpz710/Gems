@@ -69,7 +69,7 @@ class AddGemCommand extends Command implements PluginOwned {
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . $targetName . " is not online or doesnt exist...");
+            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
         }
 
         return true;
