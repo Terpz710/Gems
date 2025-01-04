@@ -6,6 +6,8 @@ namespace terpz710\gems;
 
 use pocketmine\plugin\PluginBase;
 
+use pocketmine\utils\Config;
+
 use terpz710\gems\manager\GemManager;
 
 use terpz710\gems\commands\AddGemCommand;
@@ -20,6 +22,7 @@ final class Gems extends PluginBase {
     protected static $instance;
 
     private $gemManager;
+    private $messages;
 
     protected function onLoad() : void{
         self::$instance = $this;
@@ -28,8 +31,10 @@ final class Gems extends PluginBase {
     protected function onEnable(): void{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->gemManager = new GemManager();
+        $this->saveResource("messages.yml");
         $this->saveDefaultConfig();
         $this->registerCommands();
+        $this->messages = new Config($this->getDataFolder . "messages.yml", Config::YAML);
     }
 
     private function registerCommands() : void{
@@ -49,5 +54,9 @@ final class Gems extends PluginBase {
 
     public function getGemManager() : GemManager{
         return $this->gemManager;
+    }
+
+    public function getMessage() : Config{
+        return $this->messages;
     }
 }
