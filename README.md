@@ -11,6 +11,7 @@ This plugin has the basic functions such as add gems, remove gems, set gems, pay
 Easy to use API for new or experienced developers! ❤️
 
 **ScoreHud support**
+
 This currency plugin supports [ScoreHud](https://poggit.pmmp.io/p/scorehud).
 
 Tag: **{gems.balance}**
