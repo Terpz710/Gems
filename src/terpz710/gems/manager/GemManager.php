@@ -11,6 +11,8 @@ use pocketmine\utils\SingletonTrait;
 
 use terpz710\gems\Gems;
 
+use terpz710\gems\scorehud\GemScoreHud;
+
 final class GemManager {
     use SingletonTrait;
 
@@ -51,6 +53,8 @@ final class GemManager {
     public function giveGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
         $current = $this->seeGemBalance($player);
+        $tag = new GemScoreHud();
+        $tag->updateScoreTag($player);
         $this->data->setNested("$uuid.balance", $current + $amount);
         $this->data->save();
     }
@@ -59,12 +63,16 @@ final class GemManager {
         $uuid = $player->getUniqueId()->toString();
         $current = $this->seeGemBalance($player);
         $newBalance = max(0, $current - $amount);
+        $tag = new GemScoreHud();
+        $tag->updateScoreTag($player);
         $this->data->setNested("$uuid.balance", $newBalance);
         $this->data->save();
     }
 
     public function setGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
+        $tag = new GemScoreHud();
+        $tag->updateScoreTag($player);
         $this->data->setNested("$uuid.balance", $amount);
         $this->data->save();
     }
