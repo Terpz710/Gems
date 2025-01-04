@@ -45,7 +45,7 @@ final class GemManager {
         return $this->data->getNested("$uuid.balance");
     }
 
-    public function formatBalance(Player $player) : string{
+    public function seeFormattedBalance(Player $player) : string{
         $balance = $this->seeGemBalance($player);
         return number_format($balance);
     }
