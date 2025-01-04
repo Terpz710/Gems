@@ -3,7 +3,6 @@
     <b>Gems plugin for Pocketmine-MP</b>
 <a 
 
-
 # Description
 Add a gem currency to your [PocketMine-MP](https://pmmp.io) server!
 
