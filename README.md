@@ -3,7 +3,6 @@
     <b>Gems plugin for Pocketmine-MP</b>
 <a 
 
-# Description
 Add a gem currency to your [PocketMine-MP](https://pmmp.io) server!
 
 This plugin has the basic functions such as add gems, remove gems, set gems, pay gems and view your and other players gem balances.
