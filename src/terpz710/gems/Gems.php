@@ -31,10 +31,8 @@ final class Gems extends PluginBase {
     protected function onEnable(): void{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->gemManager = new GemManager();
-        $this->saveResource("messages.yml");
         $this->saveDefaultConfig();
         $this->registerCommands();
-        $this->messages = new Config($this->getDataFolder . "messages.yml", Config::YAML);
     }
 
     private function registerCommands() : void{
@@ -54,9 +52,5 @@ final class Gems extends PluginBase {
 
     public function getGemManager() : GemManager{
         return $this->gemManager;
-    }
-
-    public function getMessage() : Config{
-        return $this->messages;
     }
 }
