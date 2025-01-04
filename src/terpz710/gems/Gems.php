@@ -6,8 +6,6 @@ namespace terpz710\gems;
 
 use pocketmine\plugin\PluginBase;
 
-use pocketmine\utils\Config;
-
 use terpz710\gems\manager\GemManager;
 
 use terpz710\gems\commands\AddGemCommand;
