@@ -19,3 +19,5 @@ permissions:
     default: true
   gems.mygem:
     default: true
+  gems.leaderboard:
+    default: true
