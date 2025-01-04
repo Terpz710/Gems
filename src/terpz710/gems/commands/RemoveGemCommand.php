@@ -62,14 +62,14 @@ class RemoveGemCommand extends Command implements PluginOwned {
                 $newBalance = max(0, $info["balance"] - $amount);
                 $gemManager->data->setNested("$uuid.balance", $newBalance);
                 $gemManager->data->save();
-                $sender->sendMessage(TextFormat::GREEN . "Removed $amount gems from $targetName");
+                $sender->sendMessage(TextFormat::GREEN . "Removed " . number_format($amount) . " gems from " . $targetName);
                 $found = true;
                 break;
             }
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . "Player $targetName not found in the database");
+            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
         }
 
         return true;
