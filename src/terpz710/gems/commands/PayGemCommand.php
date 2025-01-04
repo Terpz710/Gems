@@ -70,14 +70,14 @@ class PayGemCommand extends Command implements PluginOwned {
                 $gemManager->data->setNested("$uuid.balance", $info["balance"] + $amount);
                 $gemManager->data->save();
 
-                $sender->sendMessage(TextFormat::GREEN . "You paid $amount gems to $targetName");
+                $sender->sendMessage(TextFormat::GREEN . "You paid " . number_format($amount) . " gems to " . $targetName);
                 $found = true;
                 break;
             }
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . "Player $targetName not found in the database");
+            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
         }
 
         return true;
