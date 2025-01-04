@@ -6,8 +6,6 @@ namespace terpz710\gems\scorehud;
 
 use pocketmine\player\Player;
 
-use pocketmine\utils\SingletonTrait;
-
 use terpz710\gems\manager\GemManager;
 
 use Ifera\ScoreHud\ScoreHud;
@@ -16,7 +14,6 @@ use Ifera\ScoreHud\event\TagsResolveEvent;
 use Ifera\ScoreHud\event\PlayerTagsUpdateEvent;
 
 final class GemScoreHud {
-    use SingletonTrait;
 
     public function __construct() {
         //noop
