@@ -43,6 +43,11 @@ final class GemManager {
         return $this->data->getNested("$uuid.balance");
     }
 
+    public function formatBalance(Player $player) : string{
+        $balance = $this->seeGemBalance($player);
+        return number_format($balance);
+    }
+
     public function giveGem(Player $player, int $amount) : void{
         $uuid = $player->getUniqueId()->toString();
         $current = $this->seeGemBalance($player);
