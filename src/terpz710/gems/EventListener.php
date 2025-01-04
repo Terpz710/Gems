@@ -24,20 +24,22 @@ class EventListener implements Listener {
         $player = $event->getPlayer();
         $gemManager = $this->plugin->getGemManager();
         $startAmount = $this->plugin->getConfig()->get("starting_gem_amount");
+        $tag = new GemScoreHud();
 
         if (!$gemManager->hasGemBalance($player)) {
             $gemManager->createGemBalance($player, $startAmount);
         }
 
         $gemManager->updatePlayerName($player);
-        GemScoreHud::getInstance()->updateScoreTag($player);
+        $tag->updateScoreTag($player);
     }
 
     public function teleport(EntityTeleportEvent $event) : void{
         $entity = $event->getEntity();
+        $tag = new GemScoreHud();
 
         if ($entity instanceof Player) {
-            GemScoreHud::getInstance()->updateScoreTag($entity);
+            $tag->updateScoreTag($entity);
         }
     }
 }
