@@ -22,7 +22,6 @@ final class Gems extends PluginBase {
     protected static $instance;
 
     private $gemManager;
-    private $messages;
 
     protected function onLoad() : void{
         self::$instance = $this;
