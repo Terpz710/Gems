@@ -4,6 +4,8 @@ author: Terpz710
 api: 5.0.0
 main: terpz710\gems\Gems
 
+softdepend: "ScoreHud"
+
 permissions:
   gems.addgem:
     default: op
