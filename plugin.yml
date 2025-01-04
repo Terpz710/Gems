@@ -1,0 +1,19 @@
+name: Gems
+version: 1.0.0
+author: Terpz710
+api: 5.0.0
+main: terpz710\gems\Gems
+
+permissions:
+  gems.addgem:
+    default: op
+  gems.removegem:
+    default: op
+  gems.setgem:
+    default: op
+  gems.paygem:
+    default: true
+  gems.seegem:
+    default: true
+  gems.mygem:
+    default: true
