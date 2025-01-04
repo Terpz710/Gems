@@ -49,7 +49,7 @@ class SetGemCommand extends Command implements PluginOwned {
         $amount = (int)$amount;
 
         if ($amount < 0) {
-            $sender->sendMessage(TextFormat::RED . "The amount must be zero or greater...");
+            $sender->sendMessage(TextFormat::RED . "The amount must be a positive number...");
             return false;
         }
 
@@ -61,14 +61,14 @@ class SetGemCommand extends Command implements PluginOwned {
             if (strtolower($info["name"]) === strtolower($targetName)) {
                 $gemManager->data->setNested("$uuid.balance", $amount);
                 $gemManager->data->save();
-                $sender->sendMessage(TextFormat::GREEN . "Set $targetName's gem balance to $amount");
+                $sender->sendMessage(TextFormat::GREEN . "Set " . $targetName . " gem balance to " . number_format($amount));
                 $found = true;
                 break;
             }
         }
 
         if (!$found) {
-            $sender->sendMessage(TextFormat::RED . "Player $targetName not found in the database");
+            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
         }
 
         return true;
