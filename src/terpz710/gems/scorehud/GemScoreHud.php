@@ -21,7 +21,7 @@ final class GemScoreHud {
 
     public function updateScoreTag(Player $player) : void{
         if (class_exists(ScoreHud::class)) {
-            $balance = GemManager::getInstance()->seeGemBalance($player);
+            $balance = GemManager::getInstance()->formatBalance($player);
             $ev = new PlayerTagsUpdateEvent(
                 $player,
                 [
@@ -35,7 +35,7 @@ final class GemScoreHud {
     public function onTagResolve(TagsResolveEvent $event) : void{
         $player = $event->getPlayer();
         $tag = $event->getTag();
-        $balance = GemManager::getInstance()->seeGemBalance($player);
+        $balance = GemManager::getInstance()->formatBalance($player);
         match ($tag->getName()) {
             "gems.balance" => $tag->setValue((string)$balance),
             default => null,
