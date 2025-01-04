@@ -41,7 +41,7 @@ class MyGemCommand extends Command implements PluginOwned {
 
         $gemManager = Gems::getInstance()->getGemManager();
         $balance = $gemManager->seeGemBalance($sender);
-        $sender->sendMessage(TextFormat::GREEN . "You have $balance gems");
+        $sender->sendMessage(TextFormat::GREEN . "You have " . number_format($balance) . " gems");
 
         return true;
     }
