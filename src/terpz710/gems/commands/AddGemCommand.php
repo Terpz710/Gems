@@ -16,8 +16,6 @@ use pocketmine\utils\TextFormat;
 
 use terpz710\gems\Gems;
 
-use terpz710\gems\scorehud\GemScoreHud;
-
 class AddGemCommand extends Command implements PluginOwned {
 
     private $plugin;
@@ -33,11 +31,6 @@ class AddGemCommand extends Command implements PluginOwned {
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
-        if (!$sender instanceof Player) {
-            $sender->sendMessage("This command can only be used in-game!");
-            return false;
-        }
-
         if (!$this->testPermission($sender)) {
             return false;
         }
@@ -47,45 +40,35 @@ class AddGemCommand extends Command implements PluginOwned {
             return false;
         }
 
-        [$targetName, $amount] = $args;
-        $amount = (int)$amount;
+        [$playerName, $amount] = $args;
 
+        $amount = intval($amount);
         if ($amount <= 0) {
-            $sender->sendMessage(TextFormat::RED . "The amount must be a positive number...");
+            $sender->sendMessage(TextFormat::RED . "The amount must be a positive integer!");
             return false;
         }
 
+        $player = $this->plugin->getServer()->getPlayerExact($playerName);
         $gemManager = Gems::getInstance()->getGemManager();
-        $data = $gemManager->data->getAll();
-        $tag = new GemScoreHud();
-        $found = false;
 
-        foreach ($data as $uuid => $info) {
-            if (strtolower($info["name"]) === strtolower($targetName)) {
-                $newBalance = $info["balance"] + $amount;
-                $gemManager->data->setNested("$uuid.balance", $newBalance);
-                $gemManager->data->save();
-                $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $targetName);
-                $tag->updateScoreTag($sender);
-                $receiver = $sender->getServer()->getPlayerExact($info["name"]);
-                
-                if ($receiver !== null) {
-                    $tag->updateScoreTag($receiver);
-                }
-                
-                $found = true;
-                break;
+        if ($player !== null) {
+            $gemManager->giveGem($player, $amount);
+            $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $player->getName());
+        } else {
+            $offlinePlayerExists = $gemManager->seeGemBalance($playerName) !== null;
+            if (!$offlinePlayerExists) {
+                $sender->sendMessage(TextFormat::RED . $playerName . " does not exist or has no gem balance!");
+                return false;
             }
-        }
 
-        if (!$found) {
-            $sender->sendMessage(TextFormat::RED . $targetName . " doesn't exist...");
+            $gemManager->giveGem($playerName, $amount);
+            $sender->sendMessage(TextFormat::GREEN . "Added " . number_format($amount) . " gems to " . $player->getName());
         }
 
         return true;
     }
 
-    public function getOwningPlugin() : Plugin{
+    public function getOwningPlugin(): Plugin {
         return $this->plugin;
     }
 }
